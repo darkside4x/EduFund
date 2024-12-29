@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>EduFund</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
+    <style>
+        .section {
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        #hero {
+            background-image: url('/api/placeholder/1920/1080');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #50BFE5;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid #50BFE5;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #3d9fbf;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(80, 191, 229, 0.1);
+        }
+
+        .logo span {
+            font-size: 3em;
+            color: #50BFE5;
+        }
+
+        h1, h2 {
+            color: #50BFE5;
+            margin-bottom: 20px;
+        }
+
+        .auth-buttons {
+            margin-top: 30px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <!-- First Slide: Hero Section -->
+        <div class="section" id="hero">
+            <div class="content">
+                <div class="logo"><span class="icon fa-heart"></span></div>
+                <h1>Welcome to <span style="color: #50BFE5;">EduFund</span></h1>
+                <p class="subtitle">Decentralized ETH Donations for Life-Saving Healthcare</p>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Slide: About EduFund -->
+        <div class="section">
+            <div class="content about-content">
+                <h2>About EduFund</h2>
+                <p>EduFund is a revolutionary platform that leverages blockchain technology to facilitate transparent and secure donations for educational purposes. Our mission is to create a decentralized ecosystem where donors can directly contribute to students' educational needs.</p>
+                <p>Using Ethereum smart contracts, we ensure that every donation is traceable and reaches its intended beneficiary, making the process of educational funding more efficient and trustworthy.</p>
+            </div>
+        </div>
+
+        <!-- Third Slide: Hackathon Info -->
+        <div class="section">
+            <div class="content">
+                <h2>Built for PEC Hacks</h2>
+                <p>This project was developed during PEC Hacks, one of India's premier hackathons focusing on blockchain innovation and social impact. Our team aimed to address the critical challenge of educational funding accessibility through decentralized technology.</p>
+                <div class="hackathon-details">
+                    <p>🏆 PEC Hacks 2024</p>
+                    <p>💡 Innovation in Education</p>
+                    <p>🔗 Blockchain for Social Good</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fourth Slide: Contact -->
+        <div class="section">
+            <div class="content">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p>📧 Email: v.a.sakthivel21@gmail.com</p>
+                    <p>📱 Phone: +91 90809 56357</p>
+                    <div class="social-links">
+                        <a href="#" class="icon fa-twitter"></a>
+                        <a href="#" class="icon fa-github"></a>
+                        <a href="#" class="icon fa-linkedin"></a>
+                    </div>
+                    <p class="copyright">&copy; 2024 Project EduFund. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            scrollHorizontally: true,
+            navigation: true,
+            navigationPosition: 'right',
+            navigationTooltips: ['Home', 'About', 'Hackathon', 'Contact'],
+            showActiveTooltip: true
+        });
+    </script>
+</body>
+</html>

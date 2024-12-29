@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital List</title>
+    <style>
+        /* Previous styles remain the same */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0077cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .details-btn {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .details-btn:hover {
+            background-color: #005fa3;
+        }
+        #loader {
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+            color: #0077cc;
+        }
+        .search-container {
+            width: 90%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-input {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 8px 15px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital List</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="cityInput" class="search-input" placeholder="Enter city name">
+        <button onclick="searchHospitals()" class="search-button">Search</button>
+    </div>
+
+    <div id="loader">Enter a city to search for hospitals</div>
+
+    <table style="display: none;" id="hospital-table-container">
+        <thead>
+            <tr>
+                <th>Hospital Name</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody id="hospital-table">
+        </tbody>
+    </table>
+
+    <script>
+        const apiKey = 'cMencEEfDGvsQZP+GjG2rg==LB65cLmiM7pTYdPJ';
+        
+        async function searchHospitals() {
+            const cityInput = document.getElementById('cityInput').value;
+            const tableBody = document.getElementById('hospital-table');
+            const tableContainer = document.getElementById('hospital-table-container');
+            const loader = document.getElementById('loader');
+
+            if (!cityInput) {
+                loader.innerHTML = 'Please enter a city name';
+                return;
+            }
+
+            loader.style.display = 'block';
+            loader.innerHTML = 'Loading...';
+            tableContainer.style.display = 'none';
+            tableBody.innerHTML = '';
+
+            const apiUrl = `https://api.api-ninjas.com/v1/hospitals?city=${encodeURIComponent(cityInput)}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'X-Api-Key': apiKey
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                loader.style.display = 'none';
+
+                if (data.length === 0) {
+                    loader.innerHTML = 'No hospitals found in this city.';
+                    loader.style.display = 'block';
+                } else {
+                    tableContainer.style.display = 'table';
+                    data.forEach(hospital => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${hospital.name || 'N/A'}</td>
+                            <td>${hospital.city || 'N/A'}</td>
+                            <td>${hospital.state || 'N/A'}</td>
+                            <td>${hospital.country || 'USA'}</td>
+                            <td><a class="details-btn" href="details/${hospital.name ? hospital.name.replace(/\s+/g, '_') : 'unknown'}.html">View Details</a></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                loader.innerHTML = 'Error loading hospital data. Please try again.';
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

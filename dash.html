@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Dashboard - EduFund</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+    <div id="page-wrapper">
+        <header id="header" class="alt">
+            <h1>Welcome to EduFund</h1>
+        </header>
+
+        <section id="main">
+            <div class="inner">
+                <h2 id="welcomeMessage"></h2>
+                <button id="browseHospitals">Browse Hospitals</button>
+            </div>
+        </section>
+
+        <section id="footer">
+            <div class="inner">
+                <p>Contact us: v.a.sakthivel21@gmail.com | +91 90809 56357</p>
+                <p>&copy; 2024 Project EduFund. All rights reserved.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Extract Ethereum address from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userAddress = urlParams.get('address');
+
+        if (userAddress) {
+            document.getElementById('welcomeMessage').innerText = `Welcome, ${userAddress}`;
+        } else {
+            document.getElementById('welcomeMessage').innerText = 'Welcome, Guest';
+        }
+
+        // Redirect to hospital list
+        document.getElementById('browseHospitals').addEventListener('click', () => {
+            window.location.href = 'hospital_list.html';
+        });
+    </script>
+</body>
+</html>
